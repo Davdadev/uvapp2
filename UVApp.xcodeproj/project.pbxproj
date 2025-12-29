@@ -15,6 +15,7 @@
 		AA000001000000000000000B /* UVViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000000C /* UVViewModel.swift */; };
 		AA000001000000000000000D /* LocationRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000001000000000000000E /* LocationRowView.swift */; };
 		AA000001000000000000000F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000010 /* GoogleService-Info.plist */; };
+		AA0000010000000000000012 /* UVIndexHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000013 /* UVIndexHelper.swift */; };
 		AA0000010000000000000020 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000021 /* WidgetKit.framework */; };
 		AA0000010000000000000022 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000023 /* SwiftUI.framework */; };
 		AA0000010000000000000024 /* UVAppWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000010000000000000025 /* UVAppWidget.swift */; };
@@ -57,6 +58,7 @@
 		AA000001000000000000000E /* LocationRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRowView.swift; sourceTree = "<group>"; };
 		AA0000010000000000000010 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AA0000010000000000000011 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA0000010000000000000013 /* UVIndexHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVIndexHelper.swift; sourceTree = "<group>"; };
 		AA0000010000000000000021 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		AA0000010000000000000023 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		AA0000010000000000000025 /* UVAppWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVAppWidget.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				AA0000010000000000000008 /* UVDataModel.swift */,
+				AA0000010000000000000013 /* UVIndexHelper.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				AA0000010000000000000009 /* UVService.swift in Sources */,
 				AA000001000000000000000B /* UVViewModel.swift in Sources */,
 				AA000001000000000000000D /* LocationRowView.swift in Sources */,
+				AA0000010000000000000012 /* UVIndexHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -56,17 +56,32 @@ class UVXMLParser: NSObject, XMLParserDelegate {
     private var currentIndex = ""
     private var currentFullTime = ""
     private var foundCharacters = ""
+    private var parseError: Error?
     
     func parse(data: Data) throws -> [UVLocation] {
         locations = []
+        parseError = nil
         let parser = XMLParser(data: data)
         parser.delegate = self
         
         if parser.parse() {
             return locations
         } else {
-            throw NSError(domain: "XMLParseError", code: -1, userInfo: nil)
+            // Provide more detailed error information
+            if let error = parseError ?? parser.parserError {
+                throw error
+            } else {
+                throw NSError(
+                    domain: "XMLParseError",
+                    code: -1,
+                    userInfo: [NSLocalizedDescriptionKey: "Unknown XML parsing error"]
+                )
+            }
         }
+    }
+    
+    func parser(_ parser: XMLParser, parseErrorOccurred parseError: Error) {
+        self.parseError = parseError
     }
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {

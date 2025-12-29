@@ -3,6 +3,19 @@ import SwiftUI
 import FirebaseCore
 import FirebaseFirestore
 
+// Shared UV Index Helper for color coding
+struct UVIndexHelper {
+    static func colorForIndex(_ index: Double) -> Color {
+        switch index {
+        case 0..<3: return Color.green
+        case 3..<6: return Color.yellow
+        case 6..<8: return Color.orange
+        case 8..<11: return Color.red
+        default: return Color.purple
+        }
+    }
+}
+
 // Entry for widget timeline
 struct UVWidgetEntry: TimelineEntry {
     let date: Date
@@ -112,7 +125,7 @@ struct SmallWidgetView: View {
                 
                 ZStack {
                     Circle()
-                        .fill(uvColorForIndex(firstLocation.index))
+                        .fill(UVIndexHelper.colorForIndex(firstLocation.index))
                         .frame(width: 60, height: 60)
                     
                     VStack(spacing: 2) {
@@ -128,16 +141,6 @@ struct SmallWidgetView: View {
                     .lineLimit(1)
             }
             .padding()
-        }
-    }
-    
-    private func uvColorForIndex(_ index: Double) -> Color {
-        switch index {
-        case 0..<3: return Color.green
-        case 3..<6: return Color.yellow
-        case 6..<8: return Color.orange
-        case 8..<11: return Color.red
-        default: return Color.purple
         }
     }
 }
@@ -156,7 +159,7 @@ struct MediumWidgetView: View {
                     VStack(spacing: 4) {
                         ZStack {
                             Circle()
-                                .fill(uvColorForIndex(location.index))
+                                .fill(UVIndexHelper.colorForIndex(location.index))
                                 .frame(width: 45, height: 45)
                             
                             Text("\(String(format: "%.1f", location.index))")
@@ -173,16 +176,6 @@ struct MediumWidgetView: View {
             }
         }
         .padding()
-    }
-    
-    private func uvColorForIndex(_ index: Double) -> Color {
-        switch index {
-        case 0..<3: return Color.green
-        case 3..<6: return Color.yellow
-        case 6..<8: return Color.orange
-        case 8..<11: return Color.red
-        default: return Color.purple
-        }
     }
 }
 
@@ -204,7 +197,7 @@ struct LargeWidgetView: View {
                     
                     ZStack {
                         Circle()
-                            .fill(uvColorForIndex(location.index))
+                            .fill(UVIndexHelper.colorForIndex(location.index))
                             .frame(width: 40, height: 40)
                         
                         Text("\(String(format: "%.1f", location.index))")
@@ -216,16 +209,6 @@ struct LargeWidgetView: View {
             }
         }
         .padding()
-    }
-    
-    private func uvColorForIndex(_ index: Double) -> Color {
-        switch index {
-        case 0..<3: return Color.green
-        case 3..<6: return Color.yellow
-        case 6..<8: return Color.orange
-        case 8..<11: return Color.red
-        default: return Color.purple
-        }
     }
 }
 

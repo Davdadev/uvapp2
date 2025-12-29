@@ -20,7 +20,7 @@ struct LocationRowView: View {
             // UV Index display with color coding
             ZStack {
                 Circle()
-                    .fill(uvColorForIndex(location.index))
+                    .fill(UVIndexHelper.colorForIndex(location.index))
                     .frame(width: 70, height: 70)
                 
                 VStack(spacing: 2) {
@@ -39,22 +39,6 @@ struct LocationRowView: View {
         .background(Color(UIColor.secondarySystemBackground))
         .cornerRadius(12)
         .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 2)
-    }
-    
-    // UV Index color coding based on standard scale
-    private func uvColorForIndex(_ index: Double) -> Color {
-        switch index {
-        case 0..<3:
-            return Color.green
-        case 3..<6:
-            return Color.yellow
-        case 6..<8:
-            return Color.orange
-        case 8..<11:
-            return Color.red
-        default:
-            return Color.purple
-        }
     }
 }
 
