@@ -94,8 +94,9 @@ class UVXMLParser: NSObject, XMLParserDelegate {
             currentFullTime = foundCharacters
         case "location":
             if !currentLocationName.isEmpty {
+                // Use location name as ID for consistent Firebase document updates
                 let location = UVLocation(
-                    id: UUID().uuidString,
+                    id: currentLocationName.replacingOccurrences(of: " ", with: "_").lowercased(),
                     locationName: currentLocationName,
                     index: Double(currentIndex) ?? 0.0,
                     fullTime: currentFullTime

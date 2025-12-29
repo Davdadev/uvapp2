@@ -10,6 +10,7 @@ class UVViewModel: ObservableObject {
     
     private var timer: Timer?
     private let service = UVService.shared
+    private var isCurrentlyFetching = false
     
     init() {
         startAutoRefresh()
@@ -25,7 +26,12 @@ class UVViewModel: ObservableObject {
             await fetchData()
         }
         
-        // Refresh every second as specified
+        // Refresh every second as specified in requirements
+        // NOTE: For production, consider increasing to 5-15 minutes to avoid:
+        // - Excessive API calls
+        // - High Firebase write costs
+        // - Battery drain
+        // - Potential rate limiting
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
             Task { @MainActor in
                 await self?.fetchData()
@@ -34,6 +40,10 @@ class UVViewModel: ObservableObject {
     }
     
     func fetchData() async {
+        // Prevent concurrent fetches
+        guard !isCurrentlyFetching else { return }
+        
+        isCurrentlyFetching = true
         isLoading = true
         errorMessage = nil
         
@@ -41,11 +51,15 @@ class UVViewModel: ObservableObject {
             let fetchedLocations = try await service.fetchUVData()
             locations = fetchedLocations
             lastUpdateTime = Date()
+            errorMessage = nil // Clear any previous errors
         } catch {
+            // Only update error message, keep previous data if available
             errorMessage = "Failed to fetch UV data: \(error.localizedDescription)"
+            print("UV Data fetch error: \(error)")
         }
         
         isLoading = false
+        isCurrentlyFetching = false
     }
     
     func getRelativeTimeString() -> String {
